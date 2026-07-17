@@ -1,7 +1,7 @@
 import "./style.css";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css"
-import "@raruto/leaflet-elevation/dist/leaflet-elevation.js";
+import "@raruto/leaflet-elevation/src/index.js";
 import "@raruto/leaflet-elevation/src/index.css";
 
 var map = L.map('map').setView([48.866667, 2.333333], 15);
@@ -58,14 +58,20 @@ if (navigator.geolocation) {
     setIPPosition();
 };
 
-document.addEventListener("submit", async (event) => {
+document.getElementById("form").addEventListener("submit", async (event) => {
     event.preventDefault();
     if (marker) {
         if (currPolyline) {
             currPolyline.remove();
         }
+        const input = document.getElementById("loop-distance");
 
-        var dist = document.getElementById("dist").value;
+        console.log(input);
+        console.log(input.value);
+        console.log(document.activeElement);
+
+        //var dist = document.getElementById("loop-distance").value;
+        var dist = event.target.elements["loop-distance"].value
         const lat = marker.getLatLng().lat;
         const lon = marker.getLatLng().lng;
 
