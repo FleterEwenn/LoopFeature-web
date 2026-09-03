@@ -70,12 +70,11 @@ document.getElementById("form").addEventListener("submit", async (event) => {
         console.log(input.value);
         console.log(document.activeElement);
 
-        //var dist = document.getElementById("loop-distance").value;
-        var dist = event.target.elements["loop-distance"].value
+        var dist = document.getElementById("loop-distance").value;
         const lat = marker.getLatLng().lat;
         const lon = marker.getLatLng().lng;
 
-        const url = new URL("http://192.168.1.20:5000/generate");
+        const url = new URL("http://192.168.1.146:5000/generate");
         url.searchParams.set("lat", lat);
         url.searchParams.set("lon", lon);
         url.searchParams.set("dist", dist);
@@ -104,12 +103,12 @@ document.getElementById("form").addEventListener("submit", async (event) => {
             },
             properties: {}
         };
-
-        //controlElevation.clear();
+        
+        controlElevation.clear();
 
         controlElevation.addData(geojson);
 
-        currPolyline = L.geoJSON(geojson).addTo(map);//new L.Polyline(listPoints).addTo(map);
+        currPolyline = L.geoJSON(geojson).addTo(map);
 
     } else {
         alert("Vous devez donner un point de départ");
