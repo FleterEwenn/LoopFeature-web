@@ -74,7 +74,7 @@ document.getElementById("form").addEventListener("submit", async (event) => {
         const lat = marker.getLatLng().lat;
         const lon = marker.getLatLng().lng;
 
-        const url = new URL("http://192.168.1.146:5000/generate");
+        const url = new URL("http://127.0.0.1:5000/generate");
         url.searchParams.set("lat", lat);
         url.searchParams.set("lon", lon);
         url.searchParams.set("dist", dist);

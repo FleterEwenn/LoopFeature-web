@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>loopfeature-web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,200..800;1,200..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">   
 
 </head>
 <body>
     <h1>LoopFeature</h1>
     <div id="map"></div>
+    <br/>
     <form id="form">
-        <input required id="loop-distance" type="number" step="1">
-        <button type="submit">Envoyer</button>
+        <input required id="loop-distance" type="number" step="1" min="1" max="200" placeholder="Distance (km)"> 
+        <button id="submit-btn" type="submit">Générer</button>
     </form>
     <script type="module" src="/src/main.js"></script>
 </body>
+<br/>
 </html>
