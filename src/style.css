@@ -31,7 +31,7 @@ h1 {
     text-shadow: 0 3px 8px rgb(0 0 0 / 20%);
 }
 
-#submit-btn {
+button {
     font-size: 1rem;
     background-color: #383E42;
     color: #f1f3f4;
@@ -42,7 +42,7 @@ h1 {
     transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
-#submit-btn:hover {
+button:hover {
     transform: scale(1.1);
     background-color: #52616b;
     border-color: #8b9aa3;
@@ -67,8 +67,51 @@ form {
     margin-top: 20px;
 }
 
+.loader {
+    position: absolute;
+    background-color: #f1f3f4;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    animation: spin 1.8s linear infinite;
+}
+#container {
+    display: none;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 0;
+    position: relative;
+}
+
+#loader2 {
+    animation-delay: 0.20s;
+}
+#loader3 {
+    animation-delay: 0.40s;
+}
+
+@keyframes spin {
+    0%     { transform: translate(12px, 0); opacity: 0.25; }
+    8.75%  { transform: translate(8.5px, 8.5px); opacity: 0.5; }
+    17.5%  { transform: translate(0, 12px); }
+    26.25% { transform: translate(-8.5px, 8.5px); }
+    35%    { transform: translate(-12px, 0);}
+    43.75% { transform: translate(-8.5px, -8.5px); opacity: 0.75; }
+    52.5%  { transform: translate(0, -12px); opacity: 0.5; }
+    61.25% { transform: translate(8.5px, -8.5px); opacity: 0.25; }
+    70%    { transform: translate(12px, 0); opacity: 0; }
+    100%   { transform: translate(12px, 0); opacity: 0; }
+}
+
+#download {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
 /*
-#submit-btn2 {
+button {
     font-size: 1rem;
     background-color: transparent;
     color: black;
@@ -78,7 +121,7 @@ form {
     transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
-#submit-btn2:hover {
+button:hover {
     transform: scale(1.1);
     background-color: black;
     color: #f1f3f4;

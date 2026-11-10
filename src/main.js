@@ -58,6 +58,8 @@ if (navigator.geolocation) {
     setIPPosition();
 };
 
+const loader = document.getElementById("container");
+
 document.getElementById("form").addEventListener("submit", async (event) => {
     event.preventDefault();
     if (marker) {
@@ -81,7 +83,9 @@ document.getElementById("form").addEventListener("submit", async (event) => {
 
         console.log(url.toString());
 
+        loader.style.display = "block";
         const routeInfo = await getRoute(url);
+        loader.style.display = "none";
         idgpx = routeInfo.id;
 
         var Route = routeInfo.route;
@@ -109,6 +113,21 @@ document.getElementById("form").addEventListener("submit", async (event) => {
         controlElevation.addData(geojson);
 
         currPolyline = L.geoJSON(geojson).addTo(map);
+
+        var btnDownload = document.createElement("button");
+        btnDownload.addEventListener("click", async (event) => {
+            const url = new URL("http://127.0.0.1:5000/getgpx/" + idgpx);
+            var response = await fetch(url);
+            const blob = await response.blob();
+
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = "trace.gpx";
+            link.click();
+
+        })
+        btnDownload.innerHTML = "Télécharger le fichier GPX";
+        document.getElementById("download").appendChild(btnDownload);
 
     } else {
         alert("Vous devez donner un point de départ");
