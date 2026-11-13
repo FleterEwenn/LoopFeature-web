@@ -8,6 +8,19 @@ var map = L.map('map').setView([48.866667, 2.333333], 15);
 let marker = null;
 let idgpx = null;
 let currPolyline = null;
+const btnDownload = document.getElementById("btnDownload");
+
+btnDownload.addEventListener("click", async (event) => {
+            const url = new URL("http://127.0.0.1:5000/getgpx/" + idgpx);
+            var response = await fetch(url);
+            const blob = await response.blob();
+
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = "trace.gpx";
+            link.click();
+
+        });
 
 var elevation_options = {
     theme: "lightblue-theme",
@@ -66,6 +79,7 @@ document.getElementById("form").addEventListener("submit", async (event) => {
         if (currPolyline) {
             currPolyline.remove();
         }
+        btnDownload.style.display = "none";
         const input = document.getElementById("loop-distance");
 
         console.log(input);
@@ -114,20 +128,7 @@ document.getElementById("form").addEventListener("submit", async (event) => {
 
         currPolyline = L.geoJSON(geojson).addTo(map);
 
-        var btnDownload = document.createElement("button");
-        btnDownload.addEventListener("click", async (event) => {
-            const url = new URL("http://127.0.0.1:5000/getgpx/" + idgpx);
-            var response = await fetch(url);
-            const blob = await response.blob();
-
-            const link = document.createElement("a");
-            link.href = window.URL.createObjectURL(blob);
-            link.download = "trace.gpx";
-            link.click();
-
-        })
-        btnDownload.innerHTML = "Télécharger le fichier GPX";
-        document.getElementById("download").appendChild(btnDownload);
+        btnDownload.style.display = "block";
 
     } else {
         alert("Vous devez donner un point de départ");
